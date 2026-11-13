@@ -556,7 +556,11 @@ a {
   font-size: 12px;
 }
 .nav-group-title {
-  padding: 18px 12px 8px;
+  margin: 14px 0 6px;
+  padding: 9px 12px;
+  background: #f0f0f1;
+  border: 1px solid #dedee1;
+  border-radius: 3px;
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 1.5px;
