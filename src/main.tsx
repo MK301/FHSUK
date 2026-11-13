@@ -48,6 +48,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import "./styles.css";
+import { isStaticDemo, staticDemoApi, documentUrl } from "./static-demo";
 
 type User = {
   id: string;
@@ -228,6 +229,7 @@ async function api<T>(
   method = "GET",
   body?: unknown,
 ): Promise<T> {
+  if (isStaticDemo) return staticDemoApi<T>(path, method, body);
   const response = await fetch(`/api${path}`, {
     method,
     credentials: "same-origin",
@@ -249,7 +251,7 @@ async function api<T>(
 function Brand({ compact = false }: { compact?: boolean }) {
   return (
     <div className={`brand ${compact ? "compact" : ""}`}>
-      <img src="/uk-logo.png" alt="Pečeť Univerzity Karlovy" />
+      <img src={`${import.meta.env.BASE_URL}uk-logo.png`} alt="Pečeť Univerzity Karlovy" />
       <div>
         <strong>{compact ? "FHS UK" : "Univerzita Karlova"}</strong>
         <span>
@@ -817,7 +819,8 @@ function App() {
                     <a
                       className="result-row"
                       key={d.id}
-                      href={`/api/documents/${d.id}/download`}
+                      href={documentUrl(d.id)}
+                      download
                     >
                       <FileText size={22} />
                       <div>
@@ -1558,7 +1561,8 @@ function Documents({ documents }: { documents: Doc[] }) {
             <span className="doc-date">{date(d.updated)}</span>
             <a
               className="icon-button"
-              href={`/api/documents/${d.id}/download`}
+              href={documentUrl(d.id)}
+                      download
               aria-label={`Stáhnout ${d.title}`}
             >
               <ArrowDownToLine size={19} />

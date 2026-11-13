@@ -61,3 +61,11 @@ Anglické rozhraní, nahrávání příloh, správa dokumentů a anket, plný an
 Před produkčním nasazením je nutné doplnit skutečnou autentizaci, lifecycle uživatelských účtů, podrobnou matici oprávnění, schválené zacházení s daty, obnovu ze záloh a provozní monitoring. SQLite slouží pro první lokální verzi, pro sdílený provoz se počítá s přechodem na PostgreSQL. Aplikace neobsahuje AI funkce.
 
 Veřejný dočasný náhled nastavíte proměnnou FHS_PUBLIC_ORIGIN na přesnou HTTPS adresu tunelu bez koncového lomítka. Na této adrese je dostupný pouze zaměstnanecký pohled pro čtení. Místní adresa localhost zachovává správu. Po změně adresy tunelu upravte proměnnou a restartujte server. Ukázka vyžaduje sestavený frontend.
+
+## Veřejná ukázka na GitHub Pages
+
+Repozitář MK301/FHSUK používá v Settings → Pages zdroj GitHub Actions. Workflow `.github/workflows/pages.yml` po změně větve main otestuje aplikaci, sestaví veřejné demo a zveřejní jej na https://mk301.github.io/FHSUK/.
+
+`pnpm build:pages` vytváří samostatnou složku `dist-pages`; `pnpm preview:pages` ji otevře na http://127.0.0.1:4174/FHSUK/. Původní `pnpm build` a Express server zůstávají pro plnou místní verzi.
+
+Veřejná ukázka je pouze pro prohlížení. Neobsahuje skutečné přihlášení ani backend. Data se při sestavení generují z nové databáze v paměti, nikdy z místní `data/fhs.sqlite`. Publikují se jen ukázková sdělení, dokumenty, anketa, akce, kontakty a popisy připravovaných integrací. Nepublikují se relace, audit, podněty ani obsah schránky důvěry. Zápisy a vstup správce jsou v ukázce vypnuté. Stažení ukázkových TXT dokumentů funguje i bez API.

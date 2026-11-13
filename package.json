@@ -10,7 +10,9 @@
     "dev": "node --watch server/index.js --dev",
     "start": "node server/index.js",
     "build": "tsc --noEmit && vite build",
-    "test": "node --test test/*.test.js"
+    "test": "node --test test/*.test.js",
+    "build:pages": "node scripts/build-pages.mjs",
+    "preview:pages": "vite preview --outDir dist-pages --base /FHSUK/ --port 4174 --host 127.0.0.1"
   },
   "dependencies": {
     "express": "^5.1.0",
