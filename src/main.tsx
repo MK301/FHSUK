@@ -628,7 +628,7 @@ function App() {
             <span>Přehled</span>
           </button>
           {["Management", "HR", "IT"].map((group) => (
-            <div className="nav-group" key={group}>
+            <div className="nav-group" key={group} data-group={group}>
               <div className="nav-group-title">{group}</div>
               {services
                 .filter((s) => s.group === group)

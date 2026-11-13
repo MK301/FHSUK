@@ -563,6 +563,10 @@ a {
   color: #aaa0a5;
   text-transform: uppercase;
 }
+.nav-group[data-group="HR"] .nav-group-title,
+.nav-group[data-group="IT"] .nav-group-title {
+  color: var(--red);
+}
 .nav-count {
   background: var(--red);
   color: white;
